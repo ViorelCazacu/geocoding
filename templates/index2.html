@@ -1,0 +1,26 @@
+ <!DOCTYPE html>
+<html>
+    
+    <head>
+        <title> Data Collector App </title>
+        <link href="../static/main.css" rel="stylesheet">
+    </head>
+    <body>
+       <div class="container">    
+           <h1>Super Geocoder</h1> 
+           <h3>Please upload your CSV file. The values containing adresses should be in a column named <i>address</i> or <i>Address</i></h3>
+           <div class="message">
+               {{text | safe}}
+           </div>   
+            {% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+            {% endfor %}        
+           <form action ="{{url_for('success')}}" method="POST" enctype="multipart/form-data">
+               <input type="file" accept=".csv" name="file"> <br>
+               <button type="submit"> Submit </button>
+           </form>
+           {% include [btn] ignore missing %}
+       </div> 
+    </body>
+</html>
